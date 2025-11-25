@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: authservice
+
+  config:
+    import: "configserver:http://localhost:8888"
+
+  profiles:
+    active: dev

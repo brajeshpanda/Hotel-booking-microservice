@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: booking-service
+
+  profiles:
+    active: dev
+
+  cloud:
+    config:
+      uri: http://localhost:8888
+      fail-fast: true
+      label: main   # <-- REQUIRED FOR GITHUB
+      retry:
+        max-attempts: 6
+        initial-interval: 2000
+        max-interval: 5000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

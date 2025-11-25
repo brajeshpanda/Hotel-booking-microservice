@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false" debug="false">
+
+    <!-- Load Spring service name -->
+    <springProperty scope="context" name="serviceName" source="spring.application.name"/>
+
+    <!-- Logstash TCP appender -->
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>localhost:5044</destination>
+
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"serviceName":"${serviceName}"}</customFields>
+        </encoder>
+    </appender>
+
+    <!-- Console logs also (important for debugging) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="LOGSTASH"/>
+    </root>
+
+</configuration>
