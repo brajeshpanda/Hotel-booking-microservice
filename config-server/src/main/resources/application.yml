@@ -13,11 +13,9 @@ spring:
           default-label: main
           clone-on-start: true
           force-pull: true
-          username: brajeshpanda
-
-          password: token
-
-          search-paths: /       # <-- MISSING EARLIER, NOW FIXED
+          username: ${GIT_USERNAME}
+          password: ${GIT_TOKEN}
+          search-paths: /
 
 eureka:
   client:
