@@ -14,7 +14,9 @@ spring:
           clone-on-start: true
           force-pull: true
           username: brajeshpanda
-          password: ${GITHUB_TOKEN}
+
+          password: token
+
           search-paths: /       # <-- MISSING EARLIER, NOW FIXED
 
 eureka:
