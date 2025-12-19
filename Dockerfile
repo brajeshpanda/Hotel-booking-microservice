@@ -2,17 +2,10 @@
 FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /app
 
-# Copy parent POM and module POM
-COPY pom.xml .
-COPY admin-server/pom.xml admin-server/pom.xml
-
-# Download deps
-RUN mvn -B -q -e -DskipTests dependency:go-offline
-
-# Copy full source
+# Copy everything at once (important)
 COPY . .
 
-# Build only admin-server module
+# Build only admin-server and required parents
 RUN mvn -pl admin-server -am clean package -DskipTests
 
 # -------- RUNTIME STAGE --------
